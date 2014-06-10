@@ -1,7 +1,6 @@
 #!/bin/sh
 
 apt-get update
-apt-get install python-software-properties  -y --force-yes
 
 add-apt-repository ppa:nginx/development
 
@@ -14,13 +13,11 @@ echo deb http://dl.hhvm.com/ubuntu $(lsb_release -sc) main | sudo tee /etc/apt/s
 export DEBIAN_FRONTEND=noninteractive
 
 apt-get update
-apt-get install curl wget git nginx hhvm vim mariadb-server -y --force-yes
+apt-get install git nginx hhvm mariadb-server -y --force-yes
 
 # chmod -R 777 app/storage
 
 rm /etc/nginx/sites-enabled/default
-ln -s /vagrant/conf/nginx-bgn-web /etc/nginx/sites-available/nginx-bgn-web
-ln -s /etc/nginx/sites-available/nginx-bgn-web /etc/nginx/sites-enabled/nginx-bgn-web
 
 service nginx reload
 service hhvm restart
